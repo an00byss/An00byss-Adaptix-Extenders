@@ -1,0 +1,20 @@
+{
+  "name": "WMIC-Execute",
+  "description": "Execute commands using WMIC",
+  "extensions": [
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "wmic",
+      "message": "",
+      "description": "wmic remote code execution",
+      "example": "wmic host command",
+      "args": [
+        "STRING <host>",
+        "STRING <command>"
+      ],
+      "exec": "shell wmic /node:{host} process call create \"{command}\""
+    }
+  ]
+}

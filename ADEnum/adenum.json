@@ -36,6 +36,29 @@
       "type" : "command",
       "agents": ["beacon"],
 
+      "command": "GetADGroups",
+      "message": "",
+      "description": ".NET Get AD Groups For current Domain [!] WIll Query LDAP",
+      "example": "GetADGroups",
+      "exec": "powershell ([adsisearcher]'(&(objectCategory=group))').FindAll() | Select-Object @{n='SamAccountName';e={$_.Properties.samaccountname}}, @{n='Description';e={$_.Properties.description}} | Format-Table -AutoSize"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "UserLookup",
+      "message": "",
+      "description": ".NET Lookup user in AD [!] WIll Query LDAP",
+      "example": "UserLookup USERNAME",
+      "args": [
+        "STRING <user>"
+      ],
+      "exec": "powershell ([adsisearcher]'(&(sAMAccountName={user}))').FindAll() | Select-Object -ExpandProperty Properties"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
       "command": "GetADComputers",
       "message": "",
       "description": ".NET Get ADComputers [!] WIll Query LDAP",

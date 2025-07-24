@@ -1,0 +1,50 @@
+{
+  "name": "PSRemote",
+  "description": "Execute commands PowerShell Remoting Methods",
+  "extensions": [
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "winrm",
+      "message": "",
+      "description": "winrm execution",
+      "example": "winrm host command'",
+      "args": [
+        "STRING <host>",
+        "STRING <command> *.ps1"
+      ],
+      "exec": "powershell Invoke-Command -ComputerName {host} -ScriptBlock { \"{command}\" } -Authentication Negotiate"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "winrs",
+      "message": "",
+      "description": "winrs execution method",
+      "example": "winrs host command",
+      "args": [
+        "STRING <host>",
+        "STRING <command>"
+      ],
+      "exec": "powershell winrs /r:host \"{command}\""
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "winrs_as",
+      "message": "",
+      "description": "winrs with credentials execution method",
+      "example": "winrs_as host command",
+      "args": [
+        "STRING <host>",
+        "STRING <username>",
+        "STRING <password>",
+        "STRING <command>"
+      ],
+      "exec": "powershell winrs_as /r:host /ad /u:{username} /p:\"{password}\" \"{command}\""
+    }
+  ]
+}
