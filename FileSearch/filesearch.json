@@ -28,7 +28,7 @@
         "STRING <dir> C",
         "STRING <command> pass"
       ],
-      "exec": "powershell Get-{dir}:\\ -Recurse -ErrorAction SilentlyContinue | Select-String \"{command} -CaseSensitive:$false" 
+      "exec": "powershell Get-ChildItem -Path {dir}:\\ -Recurse -ErrorAction SilentlyContinue | Select-String \"{command} -CaseSensitive:$false" 
     }
   ]
 }
