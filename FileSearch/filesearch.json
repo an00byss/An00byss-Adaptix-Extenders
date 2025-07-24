@@ -1,0 +1,34 @@
+{
+  "name": "PSSearch",
+  "description": "PowerShell FileSearch",
+  "extensions": [
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "FileSearch",
+      "message": "",
+      "description": "PowerShell search for file",
+      "example": "FileSearch DRIVE 'FILE'",
+      "args": [
+        "STRING <dir> C",
+        "STRING <command> *.ps1"
+      ],
+      "exec": "powershell Get-ChildItem -Path {dir}:\\ -Filter {command} -Recurse -ErrorAction SilentlyContinue -Force"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "StringSearch",
+      "message": "",
+      "description": "Search for string in files",
+      "example": "StringSearch Pass",
+      "args": [
+        "STRING <dir> C",
+        "STRING <command> pass"
+      ],
+      "exec": "powershell Get-{dir}:\\ -Recurse -ErrorAction SilentlyContinue | Select-String \"{command} -CaseSensitive:$false" 
+    }
+  ]
+}
