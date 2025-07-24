@@ -1,0 +1,36 @@
+{
+  "name": "Defender-Check",
+  "description": "Frequently used Defender checks",
+  "extensions": [
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "DefenderCheck",
+      "message": "",
+      "description": "Check Defender Status'",
+      "example": "Defendcheck",
+      "exec": "ps run -o C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -c Get-MpComputerStatus | select *updated, *version"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "CheckCredentialGuard",
+      "message": "",
+      "description": "Check if Credential Guard is enabled.",
+      "example": "CheckCG",
+      "exec": "ps run -o C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -c Get-WmiObject -Namespace \"root\\Microsoft\\Windows\\DeviceGuard\" -Class Win32_DeviceGuard"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "CheckPSLang",
+      "message": "",
+      "description": "Check if PowerShell Constrained Language Mode is enabled.",
+      "example": "CheckPSLang",
+      "exec": "ps run -o C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -c $ExecutionContext.SessionState.LanguageMode"
+    }
+  ]
+}

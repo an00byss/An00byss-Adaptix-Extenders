@@ -1,0 +1,69 @@
+{
+  "name": "ADEnum",
+  "description": ".NET Methods for AD Enumeration Shortcuts",
+  "extensions": [
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "ADServers",
+      "message": "",
+      "description": ".NET Method Show AD Servers info",
+      "example": "ADServers",
+      "exec": "powershell [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Servers | Select-Object Name,IPAddress,Roles"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "ADControllers",
+      "message": "",
+      "description": ".NET Method Show AD Domain Controllers",
+      "example": "ADServers",
+      "exec": "powershell [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers | Select-Object Name,IPAddress,Roles"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "GetADUsers",
+      "message": "",
+      "description": ".NET Get-ADUsers [!] WIll Query LDAP",
+      "example": "ADUsers",
+      "exec": "powershell $object = ([adsisearcher]'(&(objectCategory=user))').FindAll() | Select-Object -ExpandProperty Properties; $object.samaccountname"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "GetADComputers",
+      "message": "",
+      "description": ".NET Get ADComputers [!] WIll Query LDAP",
+      "example": "ADUsers",
+      "exec": "powershell ([adsisearcher]'(&(objectCategory=computer))').FindAll()"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "GetADGroupMembers",
+      "message": "",
+      "description": ".NET List Members of a Specific Group [!] WIll Query LDAP",
+      "example": "GetADGroupMembers",
+      "args": [
+        "STRING <command>"
+      ],
+      "exec": "powershell $object = ([adsisearcher]'(&(objectCategory=group)(cn={command}))').FindAll() | Select-Object -ExpandProperty Properties; $object.member"
+    },
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "GetSPNs",
+      "message": "",
+      "description": ".NET List SPNs for in Domain",
+      "example": "GetSPNs",
+      "exec": "powershell $object = ([adsisearcher]'(&(objectCategory=user))').FindAll() | Select-Object -ExpandProperty Properties; $object.serviceprincipalname"
+    }
+  ]
+}

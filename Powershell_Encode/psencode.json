@@ -1,0 +1,19 @@
+{
+  "name": "PSEncode",
+  "description": "Encode PowerShell Commands",
+  "extensions": [
+    {
+      "type" : "command",
+      "agents": ["beacon"],
+
+      "command": "psencode",
+      "message": "",
+      "description": "Encode PowerShell Commands",
+      "example": "psencode COMMAND",
+      "args": [
+        "STRING <command>"
+      ],
+      "exec": "ps run -o C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe -c \"$Command = '{command}'; $Bytes = [System.Text.Encoding]::Unicode.GetBytes($Command); $EncodedCommand = [Convert]::ToBase64String($Bytes); echo $EncodedCommand; powershell -exec bypass -enc $EncodedCommand"
+    }
+  ]
+}
