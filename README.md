@@ -5,6 +5,6 @@
 ![](Screenshots/ADControllers.png)
 - Defender Checks
 ![](Screenshots/DefenderCheck.png)
-- PowerShell Encoder
+- PowerShell Encode and Execute
 ![](Screenshots/PSEncodeandExecute.png)
 
