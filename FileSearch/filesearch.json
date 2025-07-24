@@ -22,7 +22,7 @@
 
       "command": "StringSearch",
       "message": "",
-      "description": "Search for string in files",
+      "description": "Search for string in files [!] May produce ALOT of output",
       "example": "StringSearch Pass",
       "args": [
         "STRING <dir> C",

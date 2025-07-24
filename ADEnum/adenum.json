@@ -6,20 +6,20 @@
       "type" : "command",
       "agents": ["beacon"],
 
-      "command": "ADServers",
+      "command": "GetADServers",
       "message": "",
       "description": ".NET Method Show AD Servers info",
-      "example": "ADServers",
+      "example": "GetADServers",
       "exec": "powershell [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Servers | Select-Object Name,IPAddress,Roles"
     },
     {
       "type" : "command",
       "agents": ["beacon"],
 
-      "command": "ADControllers",
+      "command": "GetADControllers",
       "message": "",
       "description": ".NET Method Show AD Domain Controllers",
-      "example": "ADServers",
+      "example": "GetADControllers",
       "exec": "powershell [System.DirectoryServices.ActiveDirectory.Domain]::GetCurrentDomain().DomainControllers | Select-Object Name,IPAddress,Roles"
     },
     {
@@ -28,9 +28,9 @@
 
       "command": "GetADUsers",
       "message": "",
-      "description": ".NET Get-ADUsers [!] WIll Query LDAP",
-      "example": "ADUsers",
-      "exec": "powershell $object = ([adsisearcher]'(&(objectCategory=user))').FindAll() | Select-Object -ExpandProperty Properties; $object.samaccountname"
+      "description": ".NET Get-ADUsers For current Domain [!] WIll Query LDAP",
+      "example": "GetADUsers",
+      "exec": "powershell ([adsisearcher]'(&(objectCategory=user))').FindAll() | Select-Object @{n='Name';e={$_.Properties.name}}, @{n='DistinguishedName';e={$_.Properties.distinguishedname}}, @{n='Description';e={$_.Properties.description}} | Format-Table -AutoSize"
     },
     {
       "type" : "command",
@@ -39,7 +39,7 @@
       "command": "GetADComputers",
       "message": "",
       "description": ".NET Get ADComputers [!] WIll Query LDAP",
-      "example": "ADUsers",
+      "example": "ADComputers",
       "exec": "powershell ([adsisearcher]'(&(objectCategory=computer))').FindAll()"
     },
     {
