@@ -44,7 +44,7 @@
         "STRING <password>",
         "STRING <command>"
       ],
-      "exec": "powershell winrs_as /r:host /ad /u:{username} /p:\"{password}\" \"{command}\""
+      "exec": "powershell winrs /r:host /ad /u:{username} /p:\"{password}\" \"{command}\""
     }
   ]
 }
